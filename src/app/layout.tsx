@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { Providers } from './providers'; // Import the client component
 import localFont from "next/font/local";
 import "./globals.css";
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -19,19 +19,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+      <html lang="en" className="h-full">
       <body className={`font-sans antialiased h-full ${geistSans.variable} ${geistMono.variable}`}>
         <div className="flex justify-center items-center h-screen">
           <div className="w-4/5 p-5 overflow-hidden">
-            {children}
+          <Providers>
+              {children}
+          </Providers>
           </div>
         </div>
       </body>
     </html>
+    
   );
 }
