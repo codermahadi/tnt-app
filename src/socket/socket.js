@@ -13,7 +13,11 @@ const PORT = process.env.PORT || 5011;
 app.use(express.static('public'));
 
 // Use CORS middleware
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://192.168.1.100:3000'], // Whitelist both localhost and your IP address
+    methods: ['GET', 'POST'], // Allow specific methods
+    credentials: true // Allow credentials if needed
+})); // Enable CORS for all routes
 
 // Store connected users
 const users = {};

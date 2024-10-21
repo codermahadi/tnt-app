@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState, KeyboardEvent } from 'react';
 import Image from 'next/image';
+import useSocket from '@/hooks/useSocket';
 
 type Message = {
   id: number;
@@ -13,6 +14,8 @@ type Message = {
 };
 
 const ChatPage = () => {
+  const socket = useSocket(); // Replace with your server URL
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [attachment, setAttachment] = useState<string | null>(null);
@@ -40,6 +43,7 @@ const ChatPage = () => {
       attachment: attachment,
     };
     setMessages([...messages, newMsg]);
+    socket.emit('chat message', newMsg);
     setNewMessage('');
     setAttachment(null);
   };
