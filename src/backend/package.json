@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npx tsc && nodemon",
+    "sw": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.2",
+    "socket.io": "^4.8.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
